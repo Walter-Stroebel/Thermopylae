@@ -3,9 +3,9 @@
 ## Intended audience
 Both individual users and (corporate) system admins.
 ### I am a user.
-(WIP) there will be a release that will contain a jar file. download that and double click the download, it should help you in a step-by-step manner
+There will be a release that will contain a jar file. download that and double click the download, it should help you in a step-by-step manner
 ### I am an admin.
-(WIP) Download the project and study it. You might not be familiar with Java but it should be readable enough. Devise some way to have it pre-installed for users to activate. You might want to point it to an on-premise endpoint for the LLM.
+Download the project and study it. You might not be familiar with Java but it should be readable enough. Devise some way to have it pre-installed for users to activate. You might want to point it to an on-premise endpoint for the LLM.
 Note that the project is MIT license, feel free to adapt as required.
 ## Design considerations.
 Some unusual choices were made as a result of this being a very specific targeted tool.
