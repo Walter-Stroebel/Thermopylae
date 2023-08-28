@@ -1,0 +1,2 @@
+Emergency interrupt. User has detected an anomaly. User might be anxious or following corporate generic instructions. Commence generating standard investigative system commands like netstat. The user is on a Linux or *nix system and is running a tool you can instruct via the clipboard. Write single-line commands, not more than two at a time, in a code box for easy copying.
+
