@@ -45,13 +45,13 @@ public class Thermopylae {
     private static boolean waitingForLLM = false;
     private static volatile String lastText = "";
     private static final int MAX_COMMAND_SIZE = 200;
-    private static int MAX_OUTPUT_SIZE=6000;
+    private static int MAX_OUTPUT_SIZE = 6000;
 
     public static void main(String[] args) {
         try {
             UIManager.put("Button.font", font);
             UIManager.put("Label.font", font);
-            intro();
+            setup();
         } catch (Exception ex) {
             // most likely the user is running this headless
             work();
@@ -70,6 +70,10 @@ public class Thermopylae {
 
     public static void toClipboard(String... output) {
         StringBuilder combinedText = new StringBuilder();
+        if (debug) {
+            combinedText.append("*** the tool is being tested *** the output below is a test ***");
+            combinedText.append(System.lineSeparator());
+        }
         if (null != output) {
             for (String text : output) {
                 combinedText.append(null == text ? "(null)" : text);
@@ -77,13 +81,13 @@ public class Thermopylae {
         }
         if (debug) {
             combinedText.append(System.lineSeparator());
-            combinedText.append("*** the tool is being tested *** this IS just a drill ***");
+            combinedText.append("*** the tool is being tested; just report ***");
             combinedText.append(System.lineSeparator());
         }
-        if (combinedText.length()>MAX_OUTPUT_SIZE){
+        if (combinedText.length() > MAX_OUTPUT_SIZE) {
             combinedText.setLength(MAX_OUTPUT_SIZE);
             combinedText.append(System.lineSeparator());
-            combinedText.append("Truncated at "+MAX_OUTPUT_SIZE);
+            combinedText.append("Truncated at " + MAX_OUTPUT_SIZE);
         }
         String finalText = combinedText.toString();
         if (debug) {
@@ -94,7 +98,7 @@ public class Thermopylae {
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
         StringSelection selection = new StringSelection(finalText);
         clipboard.setContents(selection, selection);
-        lastText=finalText;
+        lastText = finalText;
         waitingForLLM = true;
     }
 
@@ -109,7 +113,6 @@ public class Thermopylae {
             }
         }
         toClipboard(sb.toString());
-        lastText = sb.toString();
     }
 
     public static void work() {
@@ -180,7 +183,7 @@ public class Thermopylae {
         return output.toString();
     }
 
-    public static void intro() throws Exception {
+    public static void setup() throws Exception {
         try ( InputStream is = Thermopylae.class.getClassLoader().getResourceAsStream("userIntro.html")) {
             try ( DataInputStream dis = new DataInputStream(is)) {
                 byte[] bytes = dis.readAllBytes();
